@@ -1,13 +1,13 @@
 export default class Tarefa {
-    
+    prioridade?: string;
     descricao: string;
     concluida: boolean;
     // prioridade?: string;
 
-    constructor(descricao: string, concluida: boolean = false) { // , prioridade?: string
+    constructor(descricao: string, concluida: boolean = false, prioridade?: string) {
         this.descricao = descricao;
         this.concluida = concluida;
-        // this.prioridade = prioridade;
+        this.prioridade = prioridade;
     }
 
     marcarConcluida(): void {
@@ -32,6 +32,25 @@ export class ListaDeTarefas {
         for (const tarefa of this.tarefas) {
             console.log(`${tarefa.toString()}`);
         }
+        console.log('\n')
+    }
+}
+export class ListaPrioritaria extends ListaDeTarefas{
+
+    adicionarTarefaPrioritaria(descricao: string, prioridade: string) {
+        const novaTarefaPrioritaria = new Tarefa(descricao, false, prioridade);
+        this.tarefas.push(novaTarefaPrioritaria);
+    }
+
+    listarTarefas(): void {
+        console.log("Tarefas prioritárias: ")
+        for (const tarefa of this.tarefas) {
+            if (tarefa.prioridade) {
+                console.log(`${tarefa.toString()}`);
+            }
+        }
+        console.log('\n')
+
     }
 }
 
